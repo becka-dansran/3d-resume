@@ -7,13 +7,14 @@ import { styles } from "../styles";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
+  const [toggled, setToggled] = useState(false);
 
   return (
     <nav
-      className={`${styles.padding}  w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      className={`${styles.paddingX}  w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+        {/* Full name and title */}
         <Link
           to="/"
           className=""
@@ -22,14 +23,14 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
-
-          <p className="text-white text-[18px] font-bold cursor-pointer">
-            {" "}
-            Naran Batjargal
+          <img src={logo} alt="logo" className="w-9 h-9 object-contain mr-2" />
+          <p className="text-white text-[18px] font-bold cursor-pointer flex">
+            Naran Batjargal &nbsp;
             <span className="sm:block hidden">| Full stack develoepr</span>
           </p>
         </Link>
+
+        {/* Nav links */}
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.map((link) => (
             <li
@@ -44,23 +45,38 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        {/* Menu/Close button */}
+        <div className="flex flex-1 justify-end items-center">
           <img
-            src={toggle ? close : menu}
+            src={toggled ? close : menu}
             alt="menu"
             className="w-[28px] h-[28px] object-contain cursor-pointer"
-            onClick={() => setToggle(!toggle)}
+            onClick={() => setToggled(!toggled)}
           />
 
           <div
             className={`${
-              !toggled ? "hidden" : "flex"
-            } p-6 blck-dash gradient absolute top-20 right-0 mx-4 my-2 min-w[140px] z-10 rounded-xl`}
+              toggled ? "flex" : "hidden"
+            } p-6 black-gradient absolute top-40 right-0 mx-4 my-2 min-w[140px] z-10 rounded-xl`}
           >
-            div
+            <ul className="list-none flex justify-end items-start flex-col gap-4">
+              {navLinks.map((link) => (
+                <li
+                  key={link.id}
+                  className={`${
+                    link.title === active ? "text-white" : "text-secondary"
+                  } font-poppins font-medium cursor-pointer text-[16px]`}
+                  onClick={() => {
+                    setToggled(!toggled);
+                    setActive(link.title);
+                  }}
+                >
+                  <a href={`#${link.id}`}>{link.title}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <p className="text-red-500">as;dgjhasldkjh</p>
       </div>
     </nav>
   );
