@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ComputersCanvas } from "./canvas";
 
+import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 
 const Hero = () => {
@@ -53,4 +54,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default SectionWrapper(Hero, "hero");
