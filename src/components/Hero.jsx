@@ -23,8 +23,8 @@ const Hero = () => {
             Hi, I'm <span className="text-[#915eff]">Naran</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop 3D visuals, user interfaces
-            <br className="sm:block hidden" /> with React JS.
+            I'm passionate about building user interfaces with React JS.
+            <br className="sm:block hidden" />
           </p>
         </div>
       </div>
